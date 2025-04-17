@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMU Club Management</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background-color: #fff;
+      padding: 20px 0;
+      border-right: 1px solid #eaeaea;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .sidebar-link:hover {
+      background-color: #f0f7ff;
+    }
+
+    .sidebar-link.active {
+      background-color: #e6f2ff;
+      font-weight: 500;
+    }
+
+    .sidebar-icon {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background-color: #3498db;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 5px 10px;
+    }
+
+    .search-bar input {
+      background: none;
+      border: none;
+      color: white;
+      outline: none;
+      margin-left: 5px;
+      width: 180px;
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .user-profile img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    /* Dashboard Content */
+    .dashboard {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+    }
+
+    .dashboard-main {
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    .welcome-section {
+      margin-bottom: 20px;
+    }
+
+    .welcome-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .welcome-subtitle {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px 0 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .explore-link {
+      color: #3498db;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* Club Grid */
+    .club-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .club-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .club-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .club-logo img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .club-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .join-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .join-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Events Section */
+    .events-section {
+      margin-top: 40px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-header {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .event-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .event-organizer {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .event-details {
+      padding: 15px;
+    }
+
+    .event-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .event-detail-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rsvp-btn {
+      display: block;
+      width: 100%;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .rsvp-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Notifications Panel */
+    .notifications {
+      width: 300px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+
+    .notifications-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .notification-item {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notification-icon {
+      width: 30px;
+      height: 30px;
+      background-color: #f0f7ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-text {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .notification-time {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .notification-actions {
+      align-self: flex-start;
+    }
+
+    .more-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .see-all {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #3498db;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      
+      .dashboard-main {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+      
+      .notifications {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        padding: 10px;
+        border-right: none;
+        border-bottom: 1px solid #eaeaea;
+      }
+      
+      .club-grid, .events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#" class="sidebar-link active">
+        <div class="sidebar-icon">🏠</div>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-link">
+        <div class="sidebar-icon">🔍</div>
+        Explore Clubs
+      </a>
+      <a href="#" class="sidebar-link">
+        <div class="sidebar-icon">👤</div>
+        My Profile
+      </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-title">SMU Club Management</div>
+        <div class="search-bar">
+          <span>🔍</span>
+          <input type="text" placeholder="Search">
+        </div>
+        <div class="user-profile">
+          <span>👤</span>
+          <span>[USERNAME]</span>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="dashboard">
+        <div class="dashboard-main">
+          <div class="welcome-section">
+            <h1 class="welcome-title">Welcome back, [USERNAME]!</h1>
+            <p class="welcome-subtitle">Stay connected with your clubs and upcoming events</p>
+          </div>
+
+          <!-- My Clubs -->
+          <div>
+            <div class="section-header">
+              <h2 class="section-title">My Clubs</h2>
+              <a href="#" class="explore-link">Explore More Clubs</a>
+            </div>
+            
+            <div class="club-grid">
+              <!-- IEEE Club -->
+              <div class="club-card">
+                <div class="club-logo">
+                  <span style="color:#0071c5; font-size:30px; font-weight:bold;">IEEE</span>
+                </div>
+                <h3 class="club-name">IEEE Student Branch</h3>
+                <button class="join-btn">Join Club</button>
+              </div>
+              
+              <!-- Google Developer Club -->
+              <div class="club-card">
+                <div class="club-logo">
+                  <div style="display:flex;">
+                    <span style="color:#4285F4;font-size:24px;">G</span>
+                    <span style="color:#EA4335;font-size:24px;">D</span>
+                    <span style="color:#FBBC05;font-size:24px;">C</span>
+                  </div>
+                </div>
+                <h3 class="club-name">Google Developer Club</h3>
+                <button class="join-btn">Join Club</button>
+              </div>
+              
+              <!-- Enactus Club -->
+              <div class="club-card">
+                <div class="club-logo">
+                  <span style="color:#FFC72C; font-size:28px;">⭐</span>
+                </div>
+                <h3 class="club-name">Enactus Club</h3>
+                <button class="join-btn">Join Club</button>
+              </div>
+              
+              <!-- Lions Club -->
+              <div class="club-card">
+                <div class="club-logo">
+                  <span style="color:#003399; font-size:30px;">🦁</span>
+                </div>
+                <h3 class="club-name">Lions Club</h3>
+                <button class="join-btn">Applications Closed</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Events -->
+          <div class="events-section">
+            <div class="section-header">
+              <h2 class="section-title">Upcoming Events</h2>
+            </div>
+            
+            <div class="events-grid">
+              <!-- Event 1 -->
+              <div class="event-card">
+                <div class="event-header">
+                  <h3 class="event-title">IEEE Workshop: Intro to 3D printing</h3>
+                  <div class="event-organizer">IEEE Student Branch</div>
+                </div>
+                <div class="event-details">
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📅</div>
+                    <div>Tomorrow, 4:00 PM</div>
+                  </div>
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📍</div>
+                    <div>Block B, Room E-100</div>
+                  </div>
+                </div>
+                <button class="rsvp-btn">RSVP</button>
+              </div>
+              
+              <!-- Event 2 -->
+              <div class="event-card">
+                <div class="event-header">
+                  <h3 class="event-title">IEEE Workshop: Intro to 3D printing</h3>
+                  <div class="event-organizer">IEEE Student Branch</div>
+                </div>
+                <div class="event-details">
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📅</div>
+                    <div>Tomorrow, 4:00 PM</div>
+                  </div>
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📍</div>
+                    <div>Block B, Room E-105</div>
+                  </div>
+                </div>
+                <button class="rsvp-btn">RSVP</button>
+              </div>
+              
+              <!-- Event 3 -->
+              <div class="event-card">
+                <div class="event-header">
+                  <h3 class="event-title">IEEE Workshop: Intro to 3D printing</h3>
+                  <div class="event-organizer">IEEE Student Branch</div>
+                </div>
+                <div class="event-details">
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📅</div>
+                    <div>Tomorrow, 4:00 PM</div>
+                  </div>
+                  <div class="event-detail">
+                    <div class="event-detail-icon">📍</div>
+                    <div>Block B, Room E-101</div>
+                  </div>
+                </div>
+                <button class="rsvp-btn">RSVP</button>
+              </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+              <a href="#" class="explore-link">Explore More Clubs</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div class="notifications">
+          <h2 class="notifications-title">Notifications</h2>
+          
+          
+          
+          <div class="see-all">
+            See all notifications
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
