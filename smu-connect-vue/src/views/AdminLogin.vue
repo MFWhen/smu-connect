@@ -2,7 +2,7 @@
     <div class="login-container">
       <div class="login-left">
         <div class="logo-container">
-          <img src="@/assets/images/image6.png" alt="SMU MedTech Logo" />
+          <img src="" alt="SMU MedTech Logo" />
         </div>
   
         <h1 class="login-title">ADMIN LOGIN</h1>
@@ -22,7 +22,7 @@
       </div>
   
       <div class="login-right">
-        <img class="full-image" src="@/assets/images/image-10.jpg" alt="SMU Club Management" />
+        <img class="full-image" src="" alt="SMU Club Management" />
       </div>
     </div>
   </template>

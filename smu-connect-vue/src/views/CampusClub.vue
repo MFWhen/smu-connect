@@ -2,7 +2,7 @@
     <div>
       <header>
         <div class="logo-container">
-          <img src="@/assets/images/image6.png" alt="Hero Image" />
+          <img src="" alt="Hero Image" />
           <div class="logo-text"></div>
         </div>
         <nav>
@@ -23,7 +23,7 @@
       </header>
   
       <section class="hero">
-        <img src="@/assets/images/image1.jpg" alt="Hero Image" />
+        <img src="" alt="Hero Image" />
         <div class="hero-content">
           <h1>Campus Club Management</h1>
           <button class="join-btn">Join a Club</button>
@@ -32,7 +32,7 @@
   
       <section class="about-section">
         <div class="about-image">
-          <img src="@/assets/images/image2.jpg" alt="People Image" />
+          <img src="" alt="People Image" />
         </div>
         <div class="about-content">
           <h2>Get Involved, Grow, and Connect!</h2>
@@ -69,19 +69,19 @@
         clubs: [
           {
             name: 'IEEE',
-            image: require('@/assets/images/image3.jpg'),
+            image: require(),
             description:
               'The Institute of Electrical and Electronics Engineers (IEEE)...',
           },
           {
             name: 'Enactus',
-            image: require('@/assets/images/image4.jpg'),
+            image: require(),
             description:
               'Enactus is an entrepreneurship society founded to create...',
           },
           {
             name: 'Lions Club SMU',
-            image: require('@/assets/images/image5.jpg'),
+            image: require(),
             description:
               'Founded in 1917, Lions Club is a place where individuals join...',
           },
@@ -91,8 +91,5 @@
   };
   </script>
   
-  <style scoped>
-  /* You can paste your CSS here or import it */
-  @import '@/assets/styles.css';
-  </style>
+  
   
