@@ -69,19 +69,19 @@
         clubs: [
           {
             name: 'IEEE',
-            image: require(),
+            image: require('C:/Users/hyper/OneDrive/Desktop/ISS296/smu-connect-(html)/smu-connect/smu-connect-vue/src/assets/ieeelogo.png'),
             description:
               'The Institute of Electrical and Electronics Engineers (IEEE)...',
           },
           {
             name: 'Enactus',
-            image: require(),
+            image: require('C:/Users/hyper/OneDrive/Desktop/ISS296/smu-connect-(html)/smu-connect/smu-connect-vue/src/assets/thumb__700_400_0_0_auto.png'),
             description:
               'Enactus is an entrepreneurship society founded to create...',
           },
           {
             name: 'Lions Club SMU',
-            image: require(),
+            image: require('C:/Users/hyper/OneDrive/Desktop/ISS296/smu-connect-(html)/smu-connect/smu-connect-vue/src/assets/Lions_Clubs_International_logo.svg.png'),
             description:
               'Founded in 1917, Lions Club is a place where individuals join...',
           },
