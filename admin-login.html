@@ -3,157 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMU Club Management - Member Login</title>
+    <title>Member Login - SMU Club Management</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-        }
-        
-        .container {
-            display: flex;
-            width: 80%;
-            max-width: 1000px;
-            background-color: white;
-            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
-        .login-section {
+        .login-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .login-left {
             flex: 1;
-            padding: 40px;
+            background-color: white;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            background-color: white;
+            padding: 2rem;
         }
         
-        .image-section {
+        .login-right {
             flex: 1;
-            background-color: #0088a9;
-            background-image: url('YOUR_IMAGE_URL_HERE');  /* REPLACE WITH YOUR IMAGE URL */
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            overflow: hidden;
         }
         
-        .welcome-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-            background-color: rgba(0, 136, 169, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            width: 70%;
-        }
-        
-        .logo {
-            width: 180px;
-            margin-bottom: 20px;
-        }
-        
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        
-        .subtitle {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 30px;
-        }
-        
-        .input-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        input {
+        .full-image {
             width: 100%;
-            padding: 15px 15px 15px 40px;
-            border: none;
-            background-color: #f0f0ff;
-            border-radius: 30px;
-            font-size: 16px;
-            box-sizing: border-box;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .icon {
+        .logo-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .logo-container img {
+            width: 120px;
+            height: auto;
+        }
+        
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .login-form {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: #f0f5ff;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-group svg {
             position: absolute;
-            left: 15px;
+            left: 0.8rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #555;
+            color: #666;
         }
         
-        button {
-            background-color: #0088a9;
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #0080A0;
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 30px;
-            font-size: 16px;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: 10px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 0 #00617A, 0 8px 10px rgba(0,0,0,0.2);
+            position: relative;
+            transition: all 0.1s;
         }
         
-        button:hover {
-            background-color: #006d8a;
+        .login-btn:hover {
+            background-color: #00617A;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                width: 95%;
-            }
-            
-            .image-section {
-                height: 200px;
-                order: -1;
-            }
+        .login-btn:active {
+            top: 4px;
+            box-shadow: 0 2px 0 #00617A, 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #333;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+        
+        .social-btn img {
+            width: 24px;
+            height: 24px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-section">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Crect x='10' y='10' width='40' height='40' fill='%230088a9'/%3E%3Ccircle cx='30' cy='30' r='15' fill='white'/%3E%3Cpath d='M30,20 Q40,30 30,40 Q20,30 30,20' fill='%230088a9'/%3E%3Ctext x='60' y='25' font-family='Arial' font-weight='bold' font-size='14' fill='%230088a9'%3EMedTech%3C/text%3E%3Ctext x='60' y='40' font-family='Arial' font-size='10' fill='%23555'%3EMediterranean%3C/text%3E%3Ctext x='60' y='50' font-family='Arial' font-size='10' fill='%23555'%3EInstitute of Technology%3C/text%3E%3Ctext x='30' y='70' font-family='Arial' font-weight='bold' font-size='18' text-anchor='middle' fill='%230088a9'%3ESMU%3C/text%3E%3C/svg%3E" alt="MedTech SMU Logo" class="logo">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="logo-container">
+                <img src="smu-connect-vue\\src\\assets\\medtech_logo-f.png" alt="SMU MedTech Logo">
+            </div>
             
-            <h1>MEMBER LOGIN IN</h1>
-            <p class="subtitle">Manage your club with ease</p>
+            <h1 class="login-title">Admin Login</h1>
+            <p class="login-subtitle">Manage your club with ease</p>
             
-            <form>
-                <div class="input-container">
-                    <span class="icon">👤</span>
-                    <input type="text" placeholder="Username" required>
+            <form class="login-form">
+                <div class="form-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                    <input type="text" placeholder="Username" />
                 </div>
                 
-                <div class="input-container">
-                    <span class="icon">🔒</span>
-                    <input type="password" placeholder="Password" required>
+                <div class="form-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                    <input type="password" placeholder="Password" />
                 </div>
                 
-                <button type="submit">Sign in as Member</button>
+                <button type="button" class="login-btn">Sign in as Administrator</button>
+                
+                <div class="social-login">
+                   
+                </div>
             </form>
         </div>
         
-        <div class="image-section">
-            <div class="welcome-content">
-                <h2>Welcome to the SMU Club Management website!</h2>
-            </div>
+        <div class="login-right">
+            <img class="full-image" src="smu-connect-vue\\src\\assets\\Screenshot 2025-05-08 221015.png" alt="SMU Club Management">
         </div>
     </div>
 </body>
